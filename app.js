@@ -5,6 +5,7 @@ const ADMIN_PASS = 'PeloteroMenorca';
 
 const getRole = () => localStorage.getItem(AUTH_KEY) || 'invitado';
 const isAdmin = () => getRole() === 'admin';
+let serverOnline = true;
 
 function setRole(role) {
   localStorage.setItem(AUTH_KEY, role);
@@ -35,11 +36,14 @@ async function loadTypes() {
       el('responsabilidad').innerHTML = list.map((t) => `<option value="${t}">${t}</option>`).join('');
     }
   } catch {
+    serverOnline = false;
     if (el('responsabilidad')) {
       el('responsabilidad').innerHTML = ['Cable', 'Cobro'].map((t) => `<option value="${t}">${t}</option>`).join('');
     }
+    if (el('msgConexion')) el('msgConexion').textContent = 'Sin conexión al servidor: no se guardará en data.json.';
   }
 }
+
 
 async function cargarHoy() {
   const { data } = await getJSON('/api/responsabilidades-hoy');
@@ -143,7 +147,7 @@ el('formRegistro').addEventListener('submit', async (e) => {
     e.target.reset();
     await refreshAll();
   } catch (err) {
-    el('msgRegistro').textContent = err.message;
+    el('msgRegistro').textContent = `No se pudo guardar en servidor: ${err.message}`;
   }
 });
 
@@ -170,5 +174,7 @@ el('buscarHist').addEventListener('click', buscarHistorial);
   if (!localStorage.getItem(AUTH_KEY)) setRole('invitado');
   renderAccess();
   await loadTypes();
-  await refreshAll();
+  if (el('btnGuardar')) el('btnGuardar').disabled = !serverOnline;
+  if (serverOnline && el('msgConexion')) el('msgConexion').textContent = 'Conectado al servidor: guarda en data.json.';
+  await refreshAll().catch(() => {});
 })();
