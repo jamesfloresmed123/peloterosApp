@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peloteros - Responsabilidades</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Sistema de Responsabilidades - Peloteros</h1>
+    <p>Versión estática para GitHub Pages (guarda datos en tu navegador).</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Acceso</h2>
+      <div id="authStatus"></div>
+      <form id="formLogin" class="inline">
+        <input id="usuario" placeholder="Usuario" />
+        <input id="clave" type="password" placeholder="Clave" />
+        <button type="submit">Entrar como admin</button>
+        <button type="button" id="logoutBtn">Salir de admin</button>
+      </form>
+      <p id="msgAuth"></p>
+    </section>
+
+    <section class="card admin-only">
+      <h2>1) Registro de responsabilidades</h2>
+      <form id="formRegistro">
+        <input id="nombres" placeholder="Nombres" required />
+        <input id="apellidos" placeholder="Apellidos" required />
+        <input id="fecha" type="date" required />
+        <select id="responsabilidad" required></select>
+        <button type="submit">Guardar</button>
+      </form>
+      <div class="inline">
+        <input id="nuevoTipo" placeholder="Nuevo tipo de responsabilidad" />
+        <button id="agregarTipo">Agregar tipo</button>
+      </div>
+      <p id="msgRegistro"></p>
+    </section>
+
+    <section class="card">
+      <h2>2) Responsabilidades del día</h2>
+      <div id="hoyContainer"></div>
+    </section>
+
+    <section class="card">
+      <h2>3) Calendario de responsabilidades</h2>
+      <div class="inline">
+        <input id="year" type="number" min="2000" max="2100" />
+        <input id="month" type="number" min="1" max="12" />
+        <button id="cargarCal">Cargar calendario</button>
+      </div>
+      <div id="calendar" class="calendar"></div>
+    </section>
+
+    <section class="card admin-only">
+      <h2>5) Historial y búsqueda</h2>
+      <div class="inline wrap">
+        <input id="fNombre" placeholder="Buscar por nombre" />
+        <input id="fFecha" type="date" placeholder="Buscar por fecha" />
+        <input id="fResp" placeholder="Buscar por responsabilidad" />
+        <select id="fEstado">
+          <option value="">Todos</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Cumplió">Cumplió</option>
+        </select>
+        <button id="buscarHist">Buscar</button>
+      </div>
+      <div id="historial"></div>
+    </section>
+
+    <section class="card admin-only">
+      <h2>6) Estadísticas</h2>
+      <div id="stats"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
