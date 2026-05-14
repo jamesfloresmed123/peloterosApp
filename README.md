@@ -1,21 +1,22 @@
 # Sistema Web de Gestión de Responsabilidades para Peloteros
 
-Aplicación web con Node.js + Express (sin dependencias nativas) para registrar, consultar y dar seguimiento a responsabilidades.
+Esta versión está preparada para **GitHub Pages** y funciona sin backend.
 
-## Funcionalidades
-- Registro de responsabilidades con validaciones y estado inicial `Pendiente`.
-- Gestión de tipos de responsabilidad (inicialmente: `Cables`, `Cobro`).
-- Vista de responsabilidades del día con acción `Cumplió`.
-- Calendario mensual con colores por estado.
-- Historial con filtros por nombre, fecha, responsabilidad y estado.
-- Panel básico de estadísticas.
+## ¿Por qué antes se veía solo el README?
+GitHub Pages publica archivos estáticos del repositorio. La app estaba dentro de `public/` y dependía de APIs de Express (`/api/...`), que Pages no ejecuta.
 
-## Persistencia
-Los datos se guardan automáticamente en `data.json` en la raíz del proyecto.
+## Solución aplicada
+- Se agregó `index.html`, `app.js` y `styles.css` en la raíz para que Pages cargue la app directamente.
+- La lógica ahora guarda datos en `localStorage` del navegador.
+- Se mantienen módulos: registro, responsabilidades del día, calendario, historial y estadísticas.
 
-## Ejecutar
-```bash
-npm install
-npm start
-```
-Abrir: http://localhost:3000
+## Publicar en GitHub Pages
+1. Ve a **Settings > Pages**.
+2. En **Build and deployment** selecciona:
+   - **Source:** Deploy from a branch
+   - **Branch:** tu rama principal
+   - **Folder:** `/ (root)`
+3. Guarda y espera el despliegue.
+
+## Nota
+Los datos quedan guardados por navegador/dispositivo (localStorage).
