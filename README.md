@@ -1,34 +1,29 @@
 # Sistema Web de Gestión de Responsabilidades para Peloteros
 
-Esta versión está preparada para **GitHub Pages** y funciona sin backend.
+## Importante
+Esta aplicación ahora usa **API + archivo JSON (`data.json`)** para registrar, actualizar y consultar datos compartidos.
 
-## ¿Por qué antes se veía solo el README?
-GitHub Pages publica archivos estáticos del repositorio. La app estaba dentro de `public/` y dependía de APIs de Express (`/api/...`), que Pages no ejecuta.
+## Cómo funciona la “BD JSON”
+- `server.js` expone endpoints `/api/*`.
+- Cada operación de la app (crear, marcar cumplió, consultar calendario/historial/estadísticas) lee/escribe en `data.json`.
+- Por eso, los cambios se ven para todos los usuarios que entren al mismo despliegue del servidor.
 
-## Solución aplicada
-- Se agregó `index.html`, `app.js` y `styles.css` en la raíz para que Pages cargue la app directamente.
-- La lógica ahora guarda datos en `localStorage` del navegador.
-- Se mantienen módulos: registro, responsabilidades del día, calendario, historial y estadísticas.
+## Roles
+- **Invitado** (sin login):
+  - Ve **Responsabilidades del día** (sin botón `Cumplió`).
+  - Ve **Calendario de responsabilidades**.
+- **Admin** (login):
+  - Usuario: `admin`
+  - Clave: `PeloteroMenorca`
+  - Ve todos los módulos y sí puede usar `Cumplió`.
 
-## Publicar en GitHub Pages
-1. Ve a **Settings > Pages**.
-2. En **Build and deployment** selecciona:
-   - **Source:** Deploy from a branch
-   - **Branch:** tu rama principal
-   - **Folder:** `/ (root)`
-3. Guarda y espera el despliegue.
+## Ejecutar local
+```bash
+npm install
+npm start
+```
+Abrir: `http://localhost:3000`
 
-## Nota
-Los datos quedan guardados por navegador/dispositivo (localStorage).
-
-
-## Importante sobre GitHub Pages y JSON
-- En **GitHub Pages no se puede escribir/actualizar archivos JSON** del repositorio desde el navegador.
-- Por eso, en Pages los datos se guardan en `localStorage` (solo en ese navegador/dispositivo).
-- Si quieres que todos vean los mismos datos, debes usar el servidor Node (`server.js`), que sí guarda en `data.json`.
-
-## Modo con JSON compartido (recomendado)
-1. Ejecuta esta app en un hosting que soporte Node.js (Render, Railway, VPS, etc.).
-2. Inicia con `npm install` y `npm start`.
-3. El backend guardará y actualizará datos en `data.json` automáticamente.
-4. Accede a la URL del servidor (no la de GitHub Pages).
+## Nota sobre GitHub Pages
+GitHub Pages no ejecuta Node.js ni actualiza `data.json` del servidor.
+Para usar BD JSON compartida debes desplegar en un hosting con Node.js (Render, Railway, VPS, etc.).
