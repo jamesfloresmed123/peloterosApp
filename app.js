@@ -28,9 +28,16 @@ function renderAccess() {
 }
 
 async function loadTypes() {
-  const tipos = await getJSON('/api/tipos-responsabilidad');
-  if (el('responsabilidad')) {
-    el('responsabilidad').innerHTML = tipos.map((t) => `<option value="${t}">${t}</option>`).join('');
+  try {
+    const tipos = await getJSON('/api/tipos-responsabilidad');
+    const list = tipos.length ? tipos : ['Cable', 'Cobro'];
+    if (el('responsabilidad')) {
+      el('responsabilidad').innerHTML = list.map((t) => `<option value="${t}">${t}</option>`).join('');
+    }
+  } catch {
+    if (el('responsabilidad')) {
+      el('responsabilidad').innerHTML = ['Cable', 'Cobro'].map((t) => `<option value="${t}">${t}</option>`).join('');
+    }
   }
 }
 

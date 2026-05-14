@@ -8,8 +8,13 @@ async function getJSON(url, options) {
 }
 
 async function loadTypes() {
-  const tipos = await getJSON('/api/tipos-responsabilidad');
-  el('responsabilidad').innerHTML = tipos.map((t) => `<option value="${t}">${t}</option>`).join('');
+  try {
+    const tipos = await getJSON('/api/tipos-responsabilidad');
+    const list = tipos.length ? tipos : ['Cable', 'Cobro'];
+    el('responsabilidad').innerHTML = list.map((t) => `<option value="${t}">${t}</option>`).join('');
+  } catch {
+    el('responsabilidad').innerHTML = ['Cable', 'Cobro'].map((t) => `<option value="${t}">${t}</option>`).join('');
+  }
 }
 
 async function cargarHoy() {

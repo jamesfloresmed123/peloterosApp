@@ -9,7 +9,7 @@ const DATA_PATH = path.join(__dirname, 'data.json');
 function seedData() {
   return {
     nextId: 1,
-    tipos: ['Cables', 'Cobro'],
+    tipos: ['Cable', 'Cobro'],
     responsabilidades: [],
   };
 }
@@ -24,7 +24,7 @@ function readDB() {
   const parsed = JSON.parse(raw || '{}');
   return {
     nextId: Number(parsed.nextId || 1),
-    tipos: Array.isArray(parsed.tipos) && parsed.tipos.length ? parsed.tipos : ['Cables', 'Cobro'],
+    tipos: Array.isArray(parsed.tipos) && parsed.tipos.length ? parsed.tipos : ['Cable', 'Cobro'],
     responsabilidades: Array.isArray(parsed.responsabilidades) ? parsed.responsabilidades : [],
   };
 }
