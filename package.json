@@ -1,0 +1,13 @@
+{
+  "name": "peloteros-responsabilidades",
+  "version": "1.1.0",
+  "description": "Sistema web de gestión de responsabilidades para peloteros",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
