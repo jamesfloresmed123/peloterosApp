@@ -16,3 +16,5 @@ th, td { border:1px solid #ddd; padding:8px; }
 .registro.pending { background:#f8d7da; color:#842029; }
 .wrap { align-items:center; }
 @media (max-width: 700px) { .calendar { grid-template-columns:1fr; } }
+
+#authStatus{margin-bottom:8px}

@@ -14,6 +14,18 @@
 
   <main>
     <section class="card">
+      <h2>Acceso</h2>
+      <div id="authStatus"></div>
+      <form id="formLogin" class="inline">
+        <input id="usuario" placeholder="Usuario" />
+        <input id="clave" type="password" placeholder="Clave" />
+        <button type="submit">Entrar como admin</button>
+        <button type="button" id="logoutBtn">Salir de admin</button>
+      </form>
+      <p id="msgAuth"></p>
+    </section>
+
+    <section class="card admin-only">
       <h2>1) Registro de responsabilidades</h2>
       <form id="formRegistro">
         <input id="nombres" placeholder="Nombres" required />
@@ -44,7 +56,7 @@
       <div id="calendar" class="calendar"></div>
     </section>
 
-    <section class="card">
+    <section class="card admin-only">
       <h2>5) Historial y búsqueda</h2>
       <div class="inline wrap">
         <input id="fNombre" placeholder="Buscar por nombre" />
@@ -60,7 +72,7 @@
       <div id="historial"></div>
     </section>
 
-    <section class="card">
+    <section class="card admin-only">
       <h2>6) Estadísticas</h2>
       <div id="stats"></div>
     </section>
